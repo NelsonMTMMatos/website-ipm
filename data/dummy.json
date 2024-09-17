@@ -1,0 +1,26 @@
+[
+    {
+        "name":"Niklas Sander",
+        "number": 70560,
+        "photo":"placeholder.png",
+        "assignment":"placeholder.pdf"
+    },
+    {
+        "name":"Pedro Lopes",
+        "number": 57514,
+        "photo":"placeholder.png",
+        "assignment":"placeholder.pdf"
+    },
+    {
+        "name":"Nelson Matos",
+        "number": 60483,
+        "photo":"nelson.jpeg",
+        "assignment":"Good_Bad_Interfaces_Nelson.pdf"
+    },
+    {
+        "name":"Pedro Estróia ",
+        "number": 60691 ,
+        "photo":"placeholder.png",
+        "assignment":"placeholder.pdf"
+    }
+]

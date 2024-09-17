@@ -1,0 +1,17 @@
+'use client';
+
+import HeroCard from "@/components/HeroCard";
+import data from '../data/dummy.json';
+
+export default function Home() {
+
+  return (
+    <main>
+      <ul className="p-10 flex justify-between items-center">
+        {data.map((member, index) => (
+          <HeroCard key={index} person={member}/>
+        ))}
+      </ul>
+    </main>
+  );
+}
