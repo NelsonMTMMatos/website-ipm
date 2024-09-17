@@ -1,7 +1,7 @@
 'use client';
 
 import HeroCard from "@/components/HeroCard";
-import data from '../data/dummy.json';
+import data from '../data/data.json';
 
 export default function Home() {
 
