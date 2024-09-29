@@ -11,7 +11,7 @@ const navLinks = [
     },
     {
         href: "/about",
-        label: "About"
+        label: "Project Stages"
     }
 ]
 
