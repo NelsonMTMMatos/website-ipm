@@ -10,7 +10,7 @@ const navLinks = [
         label: "Home"
     },
     {
-        href: "/about",
+        href: "/stages",
         label: "Project Stages"
     }
 ]
@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <header className='flex justify-between items-center py-4 px-7 border-b bg-black'>
-    <div className='text-white h-12 w-12 flex justify-center items-center bg-sky-500 hover:bg-sky-700'>Logo</div>   
+    <Link href={'/'} className='text-white h-12 w-12 flex justify-center items-center bg-sky-500 hover:bg-sky-700'>Logo</Link>   
     <nav className='text-white'>
         <ul className='flex justify-center items-center gap-x-5'>
         {

@@ -1,0 +1,33 @@
+[
+    { 
+        "description": "Stage 1: Project proposal",
+        "availability": true,
+        "stage_assigment": "G_21_stage1.pdf" 
+    },
+    { 
+        "description": "Stage 2: User and task analysis",
+        "availability": false,
+        "stage_assigment": "" 
+    },
+    { 
+        "description": "Stage 3: 1st Prototype (mock-up)",
+        "availability": false,
+        "stage_assigment": "" 
+    },
+    { 
+        "description": "Stage 4: Computational prototype",
+        "availability": false,
+        "stage_assigment": "" 
+    },
+    { 
+        "description": "Stage 5: Evaluation",
+        "availability": false,
+        "stage_assigment": "" 
+    },
+    { 
+        "description": "Stage 6: Evaluation results and presentation/discussion",
+        "availability": false,
+        "stage_assigment": "" 
+    }
+]
+    
