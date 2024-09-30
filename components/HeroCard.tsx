@@ -1,15 +1,9 @@
 "use client";
 
+import { Person } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
-export interface Person {
-    name: string;
-    number:number;
-    photo: string;
-    assignment: string;
-}
   
 interface HeroCardProps {
     person: Person;

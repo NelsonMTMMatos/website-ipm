@@ -3,19 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import stages from '../../data/stages.json';
 import right_arrow from '../../public/icons/arrow-right.svg';
+import { Report } from '@/types';
 
-interface Report {
-  description: string;
-  availability: boolean;
-  stage_assigment: string;
-}
-
-const About = () => {
+const Stages = () => {
   return (
     <div className='py-20 px-40 gap-y-20 flex flex-col items-start justify-center'>
       <span className='text-6xl'> Project Stages </span>
       <div className='flex flex-col items-start w-full'>
-        {stages.map((report, index) => (
+        {stages.map((report:Report, index:number) => (
           <Link
             key={index}
             href={`/Assignments/${report.stage_assigment}`}
@@ -38,4 +33,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Stages;
