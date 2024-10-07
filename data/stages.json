@@ -6,8 +6,8 @@
     },
     { 
         "description": "Stage 2: User and task analysis",
-        "availability": false,
-        "stage_assigment": "" 
+        "availability": true,
+        "stage_assigment": "G_21_stage2.pdf" 
     },
     { 
         "description": "Stage 3: 1st Prototype (mock-up)",
