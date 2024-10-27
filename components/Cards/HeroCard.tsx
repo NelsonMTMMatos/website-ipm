@@ -5,11 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
   
-interface HeroCardProps {
+type Props = {
     person: Person;
 }
 
-const HeroCard = ({ person}: HeroCardProps) => {
+const HeroCard = ({person}: Props) => {
   const { name, number, photo, assignment } = person;
 
   return (

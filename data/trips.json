@@ -1,0 +1,12 @@
+[
+    {
+        "destination": "Lisbon",
+        "start_date": "Oct 23",
+        "end_date": "Oct 25"
+    },
+    {
+        "destination": "Munich",
+        "start_date": "Nov 1",
+        "end_date": "Nov 5"
+    }
+]

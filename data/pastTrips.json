@@ -1,0 +1,26 @@
+[
+    {
+        "destination": "Tokyo",
+        "start_date": "Mar 1",
+        "end_date": "Mar 30",
+        "year": 2023
+    },
+    {
+        "destination": "Paris",
+        "start_date": "Jan 1",
+        "end_date": "Jan 15",
+        "year": 2022
+    },
+    {
+        "destination": "New York",
+        "start_date": "Sep 5",
+        "end_date": "Sep 20",
+        "year": 2021
+    },
+    {
+        "destination": "Rome",
+        "start_date": "Apr 12",
+        "end_date": "Apr 28",
+        "year": 2020
+    }
+]

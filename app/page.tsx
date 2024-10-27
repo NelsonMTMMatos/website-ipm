@@ -1,20 +1,12 @@
-'use client';
-
-import HeroCard from "@/components/HeroCard";
-import data from '../data/data.json';
+import Map from "@/components/Map";
 
 export default function Home() {
-
   return (
-    <main>
-        <div className=" my-5 flex items-center justify-center">
-            <span className=" text-[60px]">Group 21</span>
-        </div>
-        <ul className="p-10 flex flex-col items-center justify-center gap-4 md:flex-row md:flex-wrap">
-          {data.map((member, index) => (
-            <HeroCard key={index} person={member}/>
-          ))}
-        </ul>
+    <main className="flex flex-col h-screen">
+      <div className="flex-grow w-full max-w-3xl mx-auto">
+        <Map />
+      </div>
+      <div className=" pb-16"></div>
     </main>
   );
 }

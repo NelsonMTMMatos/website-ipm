@@ -1,10 +1,16 @@
+'use client';
+
 import React from 'react'
+import { useMediaQuery } from 'react-responsive';
+import MobileFooter from './Footer/MobileFooter';
+import DesktopFooter from './Footer/DesktopFooter';
 
 const Footer = () => {
+
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
   return (
-    <footer className='mt-auto text-center text-zinc-400 py-5 px-7 border-t'>
-        <small>&copy; 2024. All rights reserved.</small>
-    </footer>
+    isMobile ? <MobileFooter /> : <DesktopFooter />
   )
 }
 

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Sizing of Map Container */
+.leaflet-container{
+    height: 100%;
+}
