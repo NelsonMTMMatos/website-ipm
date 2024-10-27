@@ -16,9 +16,6 @@ const Plans = () => {
     router.back();
   };
 
-  const handleNewPlan = () => {
-  };
-
   return (
     <div className="flex flex-col items-center justify-center">
         <div className="w-full flex items-center py-5">

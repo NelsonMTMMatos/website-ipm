@@ -22,7 +22,7 @@ const TripCard = ({trip} : Props) => {
   }
 
   return (
-  <div className=" bg-soft-lavender w-full flex flex-col justify-start items-center px-4 py-3 border-2 border-black rounded-3xl gap-2">
+  <div className=" bg-mist-blue w-full flex flex-col justify-start items-center px-4 py-3 border-2 border-black rounded-3xl gap-2">
     <div className=" w-full px-4 flex justify-start items-start">
         <span className="text-3xl">Trip to {trip.destination}</span>
     </div>
