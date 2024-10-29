@@ -11,7 +11,6 @@ type Props = {
 
 const HeroCard = ({person}: Props) => {
   const { name, number, photo, assignment } = person;
-
   return (
     <div className='w-[400px] h-[500px] flex flex-col justify-center items-center gap-y-5 border-black border-2 rounded-xl'>
       <Image src={`/Members/${photo}`} alt={name} height={250} width={250}/>
