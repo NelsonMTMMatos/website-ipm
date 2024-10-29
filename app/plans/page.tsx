@@ -7,7 +7,7 @@ import trips from '../../data/trips.json'
 import { PastTrip, Trip } from "@/types";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
-import TripCard from "@/components/cards/TripCard";
+import TripCard from "@/components/Cards/TripCard";
 
 const Plans = () => {
   const router = useRouter();
