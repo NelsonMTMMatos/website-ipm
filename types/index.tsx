@@ -23,3 +23,23 @@ export interface PastTrip {
     end_date:string;
     year:number;
 }
+
+export type FormFields = {
+    destination: string;
+    numberOfTravelers: number;
+    dayStartTime: string;
+    dayEndTime: string;
+    modeOfTransportation: string
+  }
+
+  
+  export type City = {
+    id?: string;
+    name: string;
+    lat: string;
+    lng: string;
+    country: string;
+    admin1: string | null;
+    lon?: string;
+    pop?: string;
+};

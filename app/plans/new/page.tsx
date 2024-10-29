@@ -1,25 +1,18 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoManOutline } from "react-icons/io5";
 import { FaBus, FaCar } from "react-icons/fa";
 import DestinationInput from "@/components/forms/DestinationInput";
 import { useRouter } from 'next/navigation';
-
-export type FormFields = {
-  destination: string;
-  numberOfTravelers: number;
-  dayStartTime: string;
-  dayEndTime: string;
-  modeOfTransportation: string
-}
+import { FormFields } from "@/types";
 
 const NewPlan = () => {
   const [advancedSetting, setAdvancedSettings] = useState(false);
   const [selectedMode, setSelectedMode] = useState<string | null>(null);
-  const { register, handleSubmit, setValue, watch, trigger, formState: { errors } } = useForm<FormFields>();
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormFields>();
   const router = useRouter();
 
   const handleBackClick = () => {

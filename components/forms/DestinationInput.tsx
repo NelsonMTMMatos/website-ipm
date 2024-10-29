@@ -1,21 +1,14 @@
+import { City, FormFields } from '@/types';
 import citiesData from '../../data/cities500.json';
 import { useEffect, useState } from 'react';
 import { UseFormRegister, UseFormSetValue, UseFormWatch, FieldErrors, FieldError } from 'react-hook-form';
 
 type Props = {
-  register: UseFormRegister<any>;
-  setValue: UseFormSetValue<any>;
-  watch: UseFormWatch<any>;
-  errors: FieldErrors;
+  register: UseFormRegister<FormFields>;
+  setValue: UseFormSetValue<FormFields>;
+  watch: UseFormWatch<FormFields>;
+  errors: FieldErrors<FormFields>;
 }
-
-type City = {
-  name: string;
-  lat: string;
-  lng: string;
-  country: string;
-  admin1: string;
-};
 
 const cities: City[] = citiesData as City[];
 
