@@ -1,6 +1,6 @@
 'use client';
 
-import HeroCard from "@/components/cards/HeroCard";
+import HeroCard from '@/components/cards/HeroCard';
 import data from '../../data/data.json';
 
 const Members = () => {

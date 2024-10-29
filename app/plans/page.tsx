@@ -5,9 +5,9 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import trips from '../../data/trips.json'
 import { PastTrip, Trip } from "@/types";
-import TripCard from "@/components/cards/TripCard";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
+import TripCard from "@/components/cards/TripCard";
 
 const Plans = () => {
   const router = useRouter();
