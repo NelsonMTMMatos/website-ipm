@@ -5,7 +5,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import trips from '../../data/trips.json'
 import { PastTrip, Trip } from "@/types";
-import TripCard from "@/components/Cards/TripCard";
+import TripCard from "@/components/cards/TripCard";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
 
@@ -29,7 +29,7 @@ const Plans = () => {
             {trips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
         </div>
         <div className="flex items-center gap-2 text-3xl">
-            <Link href='/' className="flex items-center gap-2 text-3xl">
+            <Link href='/plans/new' className="flex items-center gap-2 text-3xl">
                 <IoAddCircleOutline size={40}/> 
             </Link>
             <span>Create New</span>
