@@ -4,10 +4,10 @@ import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import trips from '../../data/trips.json'
-import { PastTrip, Trip } from "@/types";
-import TripCard from "@/components/Cards/TripCard";
+import { Trip } from "@/types";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
+import TripCard from "@/components/Cards/TripCard";
 
 const Plans = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const Plans = () => {
             {trips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
         </div>
         <div className="flex items-center gap-2 text-3xl">
-            <Link href='/' className="flex items-center gap-2 text-3xl">
+            <Link href='/plans/new' className="flex items-center gap-2 text-3xl">
                 <IoAddCircleOutline size={40}/> 
             </Link>
             <span>Create New</span>
@@ -42,7 +42,7 @@ const Plans = () => {
                 <span className=" text-2xl">Past Trips</span>
             </div>
             <div className=" w-full py-5 px-4 flex flex-col items-center justify-center gap-5">
-                {pastTrips.map((trip:PastTrip, index:number) => <TripCard key={index} trip={trip}/>)}
+                {pastTrips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
             </div>
         </div>
     </div>

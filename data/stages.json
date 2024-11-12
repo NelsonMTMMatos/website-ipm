@@ -11,8 +11,8 @@
     },
     { 
         "description": "Stage 3: 1st Prototype (mock-up)",
-        "availability": false,
-        "stage_assigment": "" 
+        "availability": true,
+        "stage_assigment": "G_21_stage3.pdf"
     },
     { 
         "description": "Stage 4: Computational prototype",

@@ -1,12 +1,11 @@
 [
     {
-        "destination": "Lisbon",
-        "start_date": "Oct 23",
-        "end_date": "Oct 25"
-    },
-    {
         "destination": "Munich",
-        "start_date": "Nov 1",
-        "end_date": "Nov 5"
+        "start_date": "2024-12-01",
+        "end_date": "2024-12-05",
+        "numberOfTravelers": 2,
+        "dayStartTime": "09:00", 
+        "dayEndTime": "18:00",      
+        "modeOfTransportation": "Train"
     }
 ]
