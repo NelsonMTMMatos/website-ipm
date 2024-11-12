@@ -1,28 +1,30 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import Container from "@/components/layout/Container";
+import React from 'react';
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import Container from '@/components/layout/Container';
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900',
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900',
 });
 
 export const metadata: Metadata = {
-  title: "IPM Project",
-  description: "IPM Project 2024/25",
+  title: 'IPM Project',
+  description: 'IPM Project 2024/25',
 };
 
-export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
-  
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
@@ -30,7 +32,9 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       >
         <Container>
           <Navbar />
-          {children}
+          <div className="flex-1 flex flex-col overflow-y-auto pb-4 md:pb-0">
+            {children}
+          </div>
           <Footer />
         </Container>
       </body>

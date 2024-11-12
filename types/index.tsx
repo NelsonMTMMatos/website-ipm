@@ -2,7 +2,7 @@ export interface Report {
     description: string;
     availability: boolean;
     stage_assigment: string;
-};
+}
 
 export interface Person {
     name: string;
@@ -17,23 +17,18 @@ export interface Trip {
     end_date:string;
 }
 
-export interface PastTrip {
-    destination:string;
-    start_date:string;
-    end_date:string;
-    year:number;
-}
-
 export type FormFields = {
     destination: string;
-    numberOfTravelers: number;
-    dayStartTime: string;
-    dayEndTime: string;
-    modeOfTransportation: string
-  }
+    start_date: Date;
+    end_date: Date;
+    numberOfTravelers?: number;
+    dayStartTime?: string;
+    dayEndTime?: string;
+    modeOfTransportation?: string
+}
 
   
-  export type City = {
+export type City = {
     id?: string;
     name: string;
     lat: string;
@@ -42,4 +37,4 @@ export type FormFields = {
     admin1: string | null;
     lon?: string;
     pop?: string;
-};
+}

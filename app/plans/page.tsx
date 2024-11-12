@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import trips from '../../data/trips.json'
-import { PastTrip, Trip } from "@/types";
+import { Trip } from "@/types";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
 import TripCard from "@/components/Cards/TripCard";
@@ -42,7 +42,7 @@ const Plans = () => {
                 <span className=" text-2xl">Past Trips</span>
             </div>
             <div className=" w-full py-5 px-4 flex flex-col items-center justify-center gap-5">
-                {pastTrips.map((trip:PastTrip, index:number) => <TripCard key={index} trip={trip}/>)}
+                {pastTrips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
             </div>
         </div>
     </div>
