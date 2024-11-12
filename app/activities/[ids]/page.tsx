@@ -9,7 +9,7 @@ import ActivityCard from '@/components/Cards/ActivityCard';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
 
-const activity = () => {
+const ActivityPage = () => {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -47,10 +47,10 @@ const activity = () => {
                 <span className='font-bold'>Similar activities</span>
             </div>
             <div className=' flex gap-x-3'>
-                {activity.similar.map((id:number) => <ActivityCard activity={activities[id]}/>)}    
+                {activity.similar.map((id:number, index:number) => <ActivityCard activity={activities[id]} key={index}/>)}    
             </div>   
         </div>
     </div>
 }
 
-export default activity
+export default ActivityPage

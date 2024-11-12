@@ -4,6 +4,7 @@ import Link from "next/link";
 
 type Props = {
     activity: Activity
+    key: number
 }
 
 const ActivityCard = ({activity}: Props) => {
