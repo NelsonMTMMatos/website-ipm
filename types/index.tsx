@@ -23,3 +23,12 @@ export interface PastTrip {
     end_date:string;
     year:number;
 }
+
+export interface Activity {
+    id:number,
+    name:string;
+    latitude:number,
+    longitude:number,
+    image: string,
+    description: string
+}

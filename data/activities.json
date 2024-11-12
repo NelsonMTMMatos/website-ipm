@@ -1,0 +1,67 @@
+[
+    {
+        "id": 0,
+        "name": "Belém Tower",
+        "latitude": 38.691667,
+        "longitude": -9.215833,
+        "image": "belem_tower.jpg",
+        "description": "Iconic medieval fortified tower on an islet in the river.",
+        "opening_hours": "09:30",
+        "closing_hours": "17:30",
+        "time_needed": 1,
+        "tags": ["outdoor", "historical"],
+        "similar": [2]
+    },
+    {
+        "id": 1,
+        "name": "MAAT",
+        "latitude": 38.695833,
+        "longitude": -9.193611,
+        "image": "maat.jpg",
+        "description": "Contemporary art museum",
+        "opening_hours": "10:00",
+        "closing_hours": "19:00",
+        "time_needed": 2,
+        "tags": ["indoor", "museum"],
+        "similar": [2]
+    },
+    {
+        "id": 2,
+        "name": "Coach Museum",
+        "latitude": 38.697778,
+        "longitude": -9.199722,
+        "image": "coach_museum.jpg",
+        "description": "Museum with ornate royal coaches from the 16th-19th centuries",
+        "opening_hours": "10:00",
+        "closing_hours": "18:00",
+        "time_needed": 2,
+        "tags": ["indoor", "museum"],
+        "similar": [0,1]
+    },
+    {
+        "id": 3,
+        "name": "Belém Palácio",
+        "latitude": 38.697539,
+        "longitude": -9.199001,
+        "image": "belem_palacio.jpg",
+        "description": "Typical portuguese restaurant",
+        "opening_hours": "12:00",
+        "closing_hours": "21:00",
+        "time_needed": 2,
+        "tags": ["restaurant"],
+        "similar": []
+    },
+    {
+        "id": 4,
+        "name": "Tropical Botanical Garden",
+        "latitude": 38.698361,
+        "longitude": -9.203664,
+        "image": "botanical_garden.jpg",
+        "description": "Botanical garden specialized in tropical and subtropical flora",
+        "opening_hours": "10:00",
+        "closing_hours": "17:00",
+        "time_needed": 2,
+        "tags": ["outdoor", "garden"],
+        "similar": []
+    }
+]
