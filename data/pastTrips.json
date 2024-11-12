@@ -1,26 +1,22 @@
 [
     {
         "destination": "Tokyo",
-        "start_date": "Mar 1",
-        "end_date": "Mar 30",
-        "year": 2023
+        "start_date": "2023-03-01",
+        "end_date": "2023-03-30"
     },
     {
         "destination": "Paris",
-        "start_date": "Jan 1",
-        "end_date": "Jan 15",
-        "year": 2022
+        "start_date": "2022-01-01",
+        "end_date": "2022-01-15"
     },
     {
         "destination": "New York",
-        "start_date": "Sep 5",
-        "end_date": "Sep 20",
-        "year": 2021
+        "start_date": "2021-09-05",
+        "end_date": "2021-09-20"
     },
     {
         "destination": "Rome",
-        "start_date": "Apr 12",
-        "end_date": "Apr 28",
-        "year": 2020
+        "start_date": "2020-04-12",
+        "end_date": "2020-04-28"
     }
 ]

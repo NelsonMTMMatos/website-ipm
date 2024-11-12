@@ -3,16 +3,17 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IoIosArrowBack } from "react-icons/io";
-import { IoManOutline } from "react-icons/io5";
-import { FaBus, FaCar } from "react-icons/fa";
 import DestinationInput from "@/components/forms/DestinationInput";
 import { useRouter } from 'next/navigation';
 import { FormFields } from "@/types";
+import CalendarInput from "@/components/forms/CalendarInput";
+import AdvancedSettingsInput from "@/components/forms/AdvancedSettingsInput";
+import { dateToISOString, hasOverlap } from "@/utils";
 
 const NewPlan = () => {
   const [advancedSetting, setAdvancedSettings] = useState(false);
   const [selectedMode, setSelectedMode] = useState<string | null>(null);
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormFields>();
+  const { register, handleSubmit, setValue, setError, watch, formState: { errors } } = useForm<FormFields>();
   const router = useRouter();
 
   const handleBackClick = () => {
@@ -20,34 +21,32 @@ const NewPlan = () => {
   };
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log('Submit: ',{...data, preferredMode: selectedMode});
+    const {destination, start_date, end_date, numberOfTravelers, dayStartTime, dayEndTime, } = data
+    console.log('Start_date', start_date)
+    if (hasOverlap(start_date, end_date)) {
+      setError("start_date", {
+          type: "manual",
+          message: "Selected dates overlap with an existing trip.",
+      });
+      return;
+    }
+    
+    const newTrip = {
+      destination: destination,
+      start_date: dateToISOString(start_date),
+      end_date: dateToISOString(end_date),
+      numberOfTravelers: numberOfTravelers ?? 1,
+      dayStartTime: dayStartTime ?? '09:00',
+      dayEndTime: dayEndTime ?? '18:00', 
+      modeOfTransportation: selectedMode ?? ''
+    }
+
+    console.log('Submit: ', newTrip);
+    // Need to store new trip somewhere, no database yet D:
   };
 
   const handleAdvancedSettingsClick = () => {
     setAdvancedSettings(prev => !prev);
-  };
-
-  const startTime = watch("dayStartTime");
-  const endTime = watch("dayEndTime");
-
-  const validateStartTime = () => {
-    if (startTime && endTime) {
-      const start = new Date(`1970-01-01T${startTime}`);
-      const end = new Date(`1970-01-01T${endTime}`);
-  
-      return start < end || "Start time must be before end time";
-    }
-    return true;
-  };
-
-  const transportationModes = [
-    { label: 'Walk', icon: <IoManOutline />, value: 'walk' },
-    { label: 'Public Transport', icon: <FaBus />, value: 'public_transport' },
-    { label: 'Car', icon: <FaCar />, value: 'car' },
-  ];
-
-  const handleModeSelect = (mode: string) => {
-    setSelectedMode(prevMode => (prevMode === mode ? null : mode));
   };
 
   return (
@@ -61,63 +60,21 @@ const NewPlan = () => {
 
       <form className="w-full px-8 flex flex-col items-start gap-y-3" onSubmit={handleSubmit(onSubmit)} >
         <DestinationInput register={register} setValue={setValue} watch={watch} errors={errors} />
+
+        <CalendarInput register={register} setValue={setValue} errors={errors}/>
+
         <div onClick={handleAdvancedSettingsClick} className={`${advancedSetting && 'text-deep-blue'}`}>
           Advanced Settings
         </div>
-        {advancedSetting && (
-          <div className="w-full flex flex-col gap-y-2">
-            <div className="flex flex-col">
-              <div className="w-full flex items-center justify-start gap-x-3">
-                  <span>Number of Travelers</span>
-                  <input type="number" min="1" className="w-10 border-2 border-black text-center" 
-                        {...register("numberOfTravelers", { min: { value: 1, message: "There needs to be at least 1 traveler." }})} />
-              </div>
-              {errors.numberOfTravelers && <p className="text-red-500 text-sm">{errors.numberOfTravelers.message}</p>}
-            </div>
-
-            <div className="flex flex-col">
-              <div className="flex gap-x-3">
-                <span>Day Start Time</span>
-                <input 
-                  type="time" 
-                  {...register("dayStartTime", {validate:validateStartTime})} 
-                />
-              </div>
-              {errors.dayStartTime && <p className="text-red-500 text-sm">{errors.dayStartTime.message}</p>}
-            </div>
-
-            <div className="flex flex-col">
-              <div className="flex gap-x-3">
-                <span>Day End Time</span>
-                <input 
-                  type="time" 
-                  {...register("dayEndTime")} 
-                />
-              </div>
-              {errors.dayEndTime && <p className="text-red-500 text-sm">{errors.dayEndTime.message}</p>}
-            </div>
-
-            <div className="flex flex-col items-start justify-center">
-              <span className="my-2">Preferred Mode of Transportation</span>
-              <div className="flex items-center gap-x-5">
-                {transportationModes.map((mode) => (
-                  <div 
-                    key={mode.value} 
-                    onClick={() => handleModeSelect(mode.value)}
-                    className={`flex flex-col items-center cursor-pointer ${
-                      selectedMode === mode.value ? 'text-deep-blue' : 'text-gray-400'
-                    }`}
-                  >
-                    <div className="text-3xl">{mode.icon}</div>
-                    <span>{mode.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        )}
-
+        {advancedSetting && 
+         <AdvancedSettingsInput 
+            register={register} 
+            watch={watch} 
+            errors={errors} 
+            selectedMode={selectedMode}
+            setSelectedMode={setSelectedMode}
+          />
+        }
         <button type="submit" className=" mt-4 bg-deep-blue text-white px-4 py-2 rounded">Save</button>
       </form>
     </div>
