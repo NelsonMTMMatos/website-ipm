@@ -32,7 +32,6 @@ function ZoomHandler({setZoom}:Props) {
 
 const Map = () => {
   const [zoom, setZoom] = useState(14)
-  console.log(zoom)
   return (
     <MapContainer center={[38.6916, -9.2160]} zoom={zoom} zoomControl={true}>
         <ZoomHandler setZoom={setZoom} />
