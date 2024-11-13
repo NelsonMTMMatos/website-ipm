@@ -3,18 +3,28 @@
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
-import trips from '../../data/trips.json'
+import initTrips from '../../data/trips.json'
 import { Trip } from "@/types";
 import { IoAddCircleOutline } from "react-icons/io5";
 import pastTrips from '../../data/pastTrips.json'
 import TripCard from "@/components/Cards/TripCard";
+import { useEffect, useState } from "react";
 
 const Plans = () => {
   const router = useRouter();
+  const [trips, setTrips] = useState(initTrips); 
 
   const handleBackClick = () => {
-    router.back();
+    router.push('/');
   };
+
+  useEffect(() => {
+    const storedTrips = sessionStorage.getItem('trips');
+    if (!storedTrips) {
+      sessionStorage.setItem('trips', JSON.stringify(initTrips));
+      setTrips(initTrips);
+    } else setTrips(JSON.parse(storedTrips));
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center">

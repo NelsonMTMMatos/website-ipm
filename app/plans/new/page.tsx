@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import DestinationInput from "@/components/forms/DestinationInput";
 import { useRouter } from 'next/navigation';
 import { FormFields } from "@/types";
@@ -17,12 +17,12 @@ const NewPlan = () => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    router.push('/plans');
   };
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const {destination, start_date, end_date, numberOfTravelers, dayStartTime, dayEndTime, } = data
-    console.log('Start_date', start_date)
+    
     if (hasOverlap(start_date, end_date)) {
       setError("start_date", {
           type: "manual",
@@ -41,8 +41,11 @@ const NewPlan = () => {
       modeOfTransportation: selectedMode ?? ''
     }
 
-    console.log('Submit: ', newTrip);
-    // Need to store new trip somewhere, no database yet D:
+    const plans = JSON.parse(sessionStorage.getItem('trips') || '[]');
+    plans.push(newTrip);
+    sessionStorage.setItem('trips', JSON.stringify(plans))
+    
+    router.push('/plans');
   };
 
   const handleAdvancedSettingsClick = () => {
@@ -63,8 +66,9 @@ const NewPlan = () => {
 
         <CalendarInput register={register} setValue={setValue} errors={errors}/>
 
-        <div onClick={handleAdvancedSettingsClick} className={`${advancedSetting && 'text-deep-blue'}`}>
-          Advanced Settings
+        <div onClick={handleAdvancedSettingsClick} className=' flex items-center justify-center'>
+          {advancedSetting ? <IoIosArrowDown size={20} /> : <IoIosArrowForward size={20}/>}
+          <span>Advanced Settings</span>
         </div>
         {advancedSetting && 
          <AdvancedSettingsInput 

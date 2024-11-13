@@ -25,8 +25,7 @@ const TripCard = ({trip} : Props) => {
     </div>
     <div className=" w-full px-4 flex justify-start items-start">
         <span className="text-2xl">
-          {`${formatDateToShortString(trip.start_date)} - ${formatDateToShortString(trip.end_date)} 
-          ${isPastTrip(trip) ? `, ${getTripYear(trip)}` : ''}`}
+          {`${formatDateToShortString(trip.start_date)} - ${formatDateToShortString(trip.end_date)} ${`, ${getTripYear(trip)}`}`}
         </span>
     </div>
     {!isPastTrip(trip) &&      

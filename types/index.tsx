@@ -12,9 +12,13 @@ export interface Person {
 }
 
 export interface Trip {
-    destination:string;
-    start_date:string;
-    end_date:string;
+    destination: string;
+    start_date: string;
+    end_date: string;
+    numberOfTravelers?: number;
+    dayStartTime?: string;
+    dayEndTime?: string;
+    modeOfTransportation?: string
 }
 
 export type FormFields = {
