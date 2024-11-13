@@ -1,6 +1,6 @@
 "use client"
 
-import { getActivityID } from '@/utils/utils';
+import { getActivityID } from '@/utils/index';
 import activities from '../../../data/activities.json'
 import { usePathname } from 'next/navigation'
 import { Activity } from '@/types';

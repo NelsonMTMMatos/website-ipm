@@ -29,3 +29,7 @@ export const hasOverlap = (startDate:Date, endDate:Date) => {
         return !(startDate > tripEnd || endDate < tripStart);
     });
 }
+
+export function getActivityID(pathName: string) {
+    return pathName.split('/')[pathName.split('/').length - 1];
+  }
