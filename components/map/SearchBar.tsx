@@ -14,10 +14,11 @@ type Props = {
 const SearchBar = ({setCoordinates, setZoom}: Props) => {
   const [suggestions, setSuggestions] = useState<Activity[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [selected, setSelected] = useState(false);
   
 
   useEffect(() => {
-    if (inputValue.length > 0) {
+    if (inputValue.length > 0 && !selected) {
       const filtered = activities.filter((activity: Activity) =>
         activity.name.toLowerCase().includes(inputValue.toLowerCase())
       );
@@ -31,13 +32,15 @@ const SearchBar = ({setCoordinates, setZoom}: Props) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
+    setSelected(false);
   };
 
   const handleSelectActivity = (activity: Activity) => {
     setInputValue(activity.name);
     setSuggestions([]);
-    setCoordinates([activity.latitude, activity.longitude])
-    setZoom(18)
+    setCoordinates([activity.latitude, activity.longitude]);
+    setZoom(18);
+    setSelected(true);
   };
 
   return (
