@@ -10,7 +10,8 @@
         "closing_hours": "17:30",
         "time_needed": 1,
         "tags": ["outdoor", "historical"],
-        "similar": [2]
+        "similar": [2],
+        "price": 20
     },
     {
         "id": 1,
@@ -23,7 +24,8 @@
         "closing_hours": "19:00",
         "time_needed": 2,
         "tags": ["indoor", "museum"],
-        "similar": [2]
+        "similar": [2],
+        "price": 1
     },
     {
         "id": 2,
@@ -36,7 +38,8 @@
         "closing_hours": "18:00",
         "time_needed": 2,
         "tags": ["indoor", "museum"],
-        "similar": [0,1]
+        "similar": [0,1],
+        "price": 1
     },
     {
         "id": 3,
@@ -49,7 +52,8 @@
         "closing_hours": "21:00",
         "time_needed": 2,
         "tags": ["restaurant"],
-        "similar": []
+        "similar": [],
+        "price": 1
     },
     {
         "id": 4,
@@ -62,6 +66,7 @@
         "closing_hours": "17:00",
         "time_needed": 2,
         "tags": ["outdoor", "garden"],
-        "similar": []
+        "similar": [],
+        "price": 1
     }
 ]

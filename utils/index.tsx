@@ -33,3 +33,11 @@ export const hasOverlap = (startDate:Date, endDate:Date) => {
 export function getActivityID(pathName: string) {
     return pathName.split('/')[pathName.split('/').length - 1];
   }
+
+
+export function isBetween(startHour: string, endHour: string, hourToCompare: string) {
+    const start = Date.parse('01/01/1970 ' + startHour);
+    const hour = Date.parse('01/01/1970 ' + hourToCompare);
+    const end = Date.parse('01/01/1970 ' + endHour);
+    return start <= hour && hour <= end;
+}

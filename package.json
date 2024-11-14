@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
+    "@mantine/core": "^7.14.0",
+    "@mantine/hooks": "^7.14.0",
     "cities.json": "^1.1.41",
     "leaflet": "^1.9.4",
     "next": "14.2.11",
+    "rc-slider": "^11.1.7",
     "react": "^18.3.1",
     "react-date-range": "^2.0.1",
     "react-dom": "^18.3.1",

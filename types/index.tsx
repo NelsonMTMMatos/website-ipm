@@ -48,5 +48,17 @@ export interface Activity {
     latitude:number,
     longitude:number,
     image: string,
-    description: string
+    description: string,
+    opening_hours: string,
+    closing_hours: string,
+    time_needed: number,
+    tags: string[],
+    similar: number[],
+    price: number
+}
+
+export interface FilterFields {
+    type:String,
+    hour:String,
+    priceRange:[number,number]
 }

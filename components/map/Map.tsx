@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import "leaflet/dist/leaflet.css"
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
-import activities from '../../data/activities.json'
 import { Activity } from '@/types';
 import Link from "next/link";
 import Image from 'next/image';
@@ -34,6 +33,7 @@ type MapProps = {
   coordinates: [number, number];
   zoom: number;
   setZoom: React.Dispatch<React.SetStateAction<number>>;
+  activities: Activity[]
 }
 
 type RecenterMapProps = {
@@ -49,14 +49,7 @@ const RecenterAutomatically = ({coordinates, zoom}: RecenterMapProps) => {
    return null;
  }
 
-const Map = ({coordinates, zoom, setZoom}: MapProps) => {
-
-  useEffect(()=>{}, [zoom]);
-
-  console.log(coordinates)
-  console.log(zoom)
-
-
+const Map = ({coordinates, zoom, setZoom, activities}: MapProps) => {
   return (
     <MapContainer center={coordinates} zoom={zoom}>
         <ZoomHandler setZoom={setZoom} />
