@@ -63,7 +63,14 @@ const Map = ({coordinates, zoom, setZoom, activities}: MapProps) => {
             <Popup className='w-[200px]'>
               <div>
                 <Link href={'/activities/' + activity.id} className='flex flex-col items-center justify-center'>
-                  <Image className='pb-3' src={"/Activities/" + activity.image} alt={activity.name} width={150} height={120} />
+                  <div className='relative w-[150px] h-[100px]'>
+                    <Image
+                      src={"/Activities/" + activity.image}
+                      alt={activity.name}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
                 </Link>
                 <span className='text-xl'> {activity.name} </span>
                 <h1>{activity.description}</h1>

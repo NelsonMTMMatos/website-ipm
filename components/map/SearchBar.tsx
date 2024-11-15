@@ -44,7 +44,7 @@ const SearchBar = ({setCoordinates, setZoom}: Props) => {
   };
 
   return (
-    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-xs flex flex-col">
+    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50 w-2/3 max-w-xs flex flex-col">
       <input
         type="text"
         value={inputValue}

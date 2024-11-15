@@ -9,6 +9,7 @@ import { FormFields } from "@/types";
 import CalendarInput from "@/components/forms/CalendarInput";
 import AdvancedSettingsInput from "@/components/forms/AdvancedSettingsInput";
 import { dateToISOString, hasOverlap } from "@/utils";
+import { differenceInDays } from 'date-fns';
 
 const NewPlan = () => {
   const [advancedSetting, setAdvancedSettings] = useState(false);
@@ -17,35 +18,44 @@ const NewPlan = () => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.push('/plans');
+    router.back()
   };
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const {destination, start_date, end_date, numberOfTravelers, dayStartTime, dayEndTime, } = data
+    const trips = JSON.parse(sessionStorage.getItem('trips') || '[]');
     
-    if (hasOverlap(start_date, end_date)) {
+    if(differenceInDays(new Date(), start_date) > 0){
+      setError("start_date", {
+        type: "manual",
+        message: "Pick a start date from today onwards.",
+      });
+      return;
+    }
+
+    if (hasOverlap(trips, start_date, end_date)) {
       setError("start_date", {
           type: "manual",
           message: "Selected dates overlap with an existing trip.",
       });
       return;
     }
-    
+
     const newTrip = {
+      id: trips.length + 1,
       destination: destination,
       start_date: dateToISOString(start_date),
       end_date: dateToISOString(end_date),
       numberOfTravelers: numberOfTravelers ?? 1,
       dayStartTime: dayStartTime ?? '09:00',
       dayEndTime: dayEndTime ?? '18:00', 
-      modeOfTransportation: selectedMode ?? ''
+      modeOfTransportation: selectedMode ?? '',
+      activities: []
     }
-
-    const plans = JSON.parse(sessionStorage.getItem('trips') || '[]');
-    plans.push(newTrip);
-    sessionStorage.setItem('trips', JSON.stringify(plans))
+    trips.push(newTrip);
+    sessionStorage.setItem('trips', JSON.stringify(trips))
     
-    router.push('/plans');
+    router.back()
   };
 
   const handleAdvancedSettingsClick = () => {
