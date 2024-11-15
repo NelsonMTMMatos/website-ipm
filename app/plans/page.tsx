@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
-import initTrips from '../../data/trips.json'
 import { Trip } from "@/types";
 import { IoAddCircleOutline } from "react-icons/io5";
-import pastTrips from '../../data/pastTrips.json'
 import TripCard from "@/components/Cards/TripCard";
 import { useEffect, useState } from "react";
+import { isPastTrip } from "@/utils";
 
 const Plans = () => {
   const router = useRouter();
-  const [trips, setTrips] = useState(initTrips); 
+  const [trips, setTrips] = useState([]); 
 
   const handleBackClick = () => {
     router.push('/');
@@ -20,11 +19,16 @@ const Plans = () => {
 
   useEffect(() => {
     const storedTrips = sessionStorage.getItem('trips');
-    if (!storedTrips) {
-      sessionStorage.setItem('trips', JSON.stringify(initTrips));
-      setTrips(initTrips);
-    } else setTrips(JSON.parse(storedTrips));
+    setTrips(JSON.parse(storedTrips || '[]'));
   }, []);
+
+  const handleTripClick = (trip: Trip) => {
+    router.push('/plans/' + trip.id)
+  }
+
+  const activeTrips = () => trips.filter(trip => !isPastTrip(trip));
+  const pastTrips = () => trips.filter(isPastTrip);
+  
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -35,24 +39,26 @@ const Plans = () => {
             <span className="text-4xl">Plans</span>
         </div>
 
-        <div className=" w-full p-10 flex flex-col items-center justify-center gap-5">
-            {trips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
+        <div className=" w-full px-6 flex flex-col items-center justify-center gap-5">
+            {activeTrips().map((trip:Trip, index:number) => 
+              <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={false}/>)}
         </div>
-        <div className="flex items-center gap-2 text-3xl">
+        <div className=" my-5 flex items-center gap-2 text-3xl">
             <Link href='/plans/new' className="flex items-center gap-2 text-3xl">
                 <IoAddCircleOutline size={40}/> 
             </Link>
             <span>Create New</span>
         </div>
-        <div className=" w-full mt-14 flex flex-col items-center justify-center">
-            <div className=" w-full px-4">
+        <div className="px-6 w-full mt-6 flex flex-col items-center justify-center">
+            <div className="w-full">
                 <div className=" border-b-8 border-dotted border-gray-500 w-full my-4 px-8"></div>
             </div>
-            <div className=" w-full px-4 flex justify-start items-start">
+            <div className=" w-full flex justify-start items-start">
                 <span className=" text-2xl">Past Trips</span>
             </div>
-            <div className=" w-full py-5 px-4 flex flex-col items-center justify-center gap-5">
-                {pastTrips.map((trip:Trip, index:number) => <TripCard key={index} trip={trip}/>)}
+            <div className=" w-full py-5 flex flex-col items-center justify-center gap-5">
+                {pastTrips().map((trip:Trip, index:number) => 
+                  <TripCard key={index} trip={trip} onClick={handleTripClick}  hasActivity={false}/>)}
             </div>
         </div>
     </div>

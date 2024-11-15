@@ -1,11 +1,57 @@
 [
     {
+        "id": 1,
         "destination": "Munich",
         "start_date": "2024-12-01",
         "end_date": "2024-12-05",
         "numberOfTravelers": 2,
         "dayStartTime": "09:00", 
         "dayEndTime": "18:00",      
-        "modeOfTransportation": "Train"
+        "modeOfTransportation": "walk",
+        "activities": []
+    },
+    {
+        "id": 2,
+        "destination": "Tokyo",
+        "start_date": "2023-03-01",
+        "end_date": "2023-03-30",
+        "numberOfTravelers": 1,
+        "dayStartTime": "08:00", 
+        "dayEndTime": "19:00",      
+        "modeOfTransportation": "walk",
+        "activities": []
+    },
+    {
+        "id": 3,
+        "destination": "Paris",
+        "start_date": "2022-01-01",
+        "end_date": "2022-01-15",
+        "numberOfTravelers": 1,
+        "dayStartTime": "10:00", 
+        "dayEndTime": "17:00",      
+        "modeOfTransportation": "car",
+        "activities": []
+    },
+    {
+        "id": 4,
+        "destination": "New York",
+        "start_date": "2021-09-05",
+        "end_date": "2021-09-20",
+        "numberOfTravelers": 3,
+        "dayStartTime": "08:00", 
+        "dayEndTime": "20:00",      
+        "modeOfTransportation": "public_transport",
+        "activities": []
+    },
+    {
+        "id": 5,
+        "destination": "Rome",
+        "start_date": "2020-04-12",
+        "end_date": "2020-04-28",
+        "numberOfTravelers": 4,
+        "dayStartTime": "07:00", 
+        "dayEndTime": "22:00",      
+        "modeOfTransportation": "car",
+        "activities": []
     }
 ]

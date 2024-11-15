@@ -15,27 +15,28 @@ const cities: City[] = citiesData as City[];
 const DestinationInput = ({ register, setValue, watch, errors }: Props) => {
   const [suggestions, setSuggestions] = useState<City[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-    if (inputValue.length > 2) {
+    if (inputValue.length > 2 && !selected) {
       const filtered = cities.filter((city: City) =>
         city.name.toLowerCase().startsWith(inputValue.toLowerCase())
       );
       setSuggestions(filtered);
-    } else {
-      setSuggestions([]);
-    }
+    } else setSuggestions([]);
   }, [inputValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
+    setSelected(false);
   };
 
   const handleSelectCity = (cityName: string) => {
     setInputValue(cityName); 
     setValue('destination', cityName);
     setSuggestions([]);
+    setSelected(true);
   };
 
   return (
@@ -56,7 +57,7 @@ const DestinationInput = ({ register, setValue, watch, errors }: Props) => {
           : 
         <></>}
 
-      {suggestions.length != 0 && (
+      {suggestions.length > 0 && (
         <ul className=" px-2 border-2 border-black top-0 border-t-0">
           {suggestions.map((city, index) => (
             <li

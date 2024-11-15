@@ -15,7 +15,11 @@ const config: Config = {
         "sky-blue": "#7091E6",       
         "steel-blue": "#8697C4",     
         "lavender-blue": "#ADBBDA",  
-        "mist-blue": "#EDE8F5",      
+        "mist-blue": "#EDE8F5",
+        "platinum": "#F0F0F0"      
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
       },
     },
   },

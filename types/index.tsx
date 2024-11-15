@@ -11,7 +11,23 @@ export interface Person {
     assignment: string;
 }
 
+export interface Activity {
+    id:number,
+    name:string;
+    latitude:number,
+    longitude:number,
+    image: string,
+    description: string,
+    opening_hours: string,
+    closing_hours: string,
+    time_needed: number,
+    tags: string[],
+    similar: number[],
+    price: number
+}
+
 export interface Trip {
+    id: number
     destination: string;
     start_date: string;
     end_date: string;
@@ -19,6 +35,7 @@ export interface Trip {
     dayStartTime?: string;
     dayEndTime?: string;
     modeOfTransportation?: string
+    activities: Activity[]
 }
 
 export type FormFields = {
@@ -40,13 +57,4 @@ export type City = {
     admin1: string | null;
     lon?: string;
     pop?: string;
-}
-
-export interface Activity {
-    id:number,
-    name:string;
-    latitude:number,
-    longitude:number,
-    image: string,
-    description: string
 }
