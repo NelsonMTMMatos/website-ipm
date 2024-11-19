@@ -2,9 +2,11 @@ import React from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
+import dynamic from 'next/dynamic';
 import Container from '@/components/layout/Container';
+
+const Navbar = dynamic(() => import('@/components/layout/Navbar'), { ssr: false });
+const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: false });
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
