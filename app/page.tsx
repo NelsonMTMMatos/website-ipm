@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 const Map = dynamic(() => import('@/components/map/Map'), { ssr: false });
 import SearchBar from '@/components/map/SearchBar';
@@ -38,29 +39,34 @@ export default function Home() {
   }, [filterOpen]);
 
   return (
-    <main className="flex flex-col h-screen relative">
-      <div className="flex-grow w-full max-w-3xl mx-auto relative">
-        <div className="relative flex items-center justify-center">
-          <SearchBar setCoordinates={setCoordinates} setZoom={setZoom} />
-          <div className="absolute top-4 right-6 z-50">
-            {filterIcon ? <MdFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />
-            : <MdOutlineFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />}
+      <>
+        <Head>
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+        </Head>
+        <main className="flex flex-col h-screen relative">
+          <div className="flex-grow w-full max-w-3xl mx-auto relative">
+            <div className="relative flex items-center justify-center">
+              <SearchBar setCoordinates={setCoordinates} setZoom={setZoom} />
+              <div className="absolute top-4 right-6 z-50">
+                {filterIcon ? <MdFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />
+                    : <MdOutlineFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />}
+              </div>
+            </div>
+            {filterOpen && (
+                <div className="absolute inset-0 bg-opacity-70 flex items-center justify-center z-50">
+                  <Filter
+                      setActivities={setActivities}
+                      setFilterIcon={setFilterIcon}
+                      setFilterOpen={setFilterOpen}
+                  />
+                </div>
+            )}
+            <div className="absolute inset-0 z-10" onClick={() => setFilterOpen(false)}>
+              <Map coordinates={coordinates} zoom={zoom} setZoom={setZoom} activities={activities} />
+            </div>
           </div>
-        </div>
-        {filterOpen && (
-          <div className="absolute inset-0 bg-opacity-70 flex items-center justify-center z-50">
-            <Filter
-              setActivities={setActivities}
-              setFilterIcon={setFilterIcon}
-              setFilterOpen={setFilterOpen}
-            />
-          </div>
-        )}
-        <div className="absolute inset-0 z-10" onClick={() => setFilterOpen(false)}>
-          <Map coordinates={coordinates} zoom={zoom} setZoom={setZoom} activities={activities} />
-        </div>
-      </div>
-      <div className="pb-16 md:pb-0"></div>
-    </main>
+          <div className="pb-16 md:pb-0"></div>
+        </main>
+      </>
   );
 }

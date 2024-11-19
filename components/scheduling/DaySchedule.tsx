@@ -3,17 +3,19 @@ import { Droppable } from "react-beautiful-dnd";
 import ActivityCard from "./ActivityCard";
 import { Activity } from "@/types";
 
+
 interface Props {
     items: Activity[];
     onRemoveItem: (id: number) => void;
     startTime?: string;
+    weather?: string;
 }
 
 const getListStyle = (isDraggingOver: boolean) => ({
     background: isDraggingOver ? "#F0F8FF" : "transparent",
 });
 
-const calculateScheduleTimes = (items: Activity[], startTime: string = "09:00"): { time: string, warning: string }[] => {
+const calculateScheduleTimes = (items: Activity[], startTime: string = "09:00", weather?: string): { time: string, warning: string }[] => {
     const scheduleTimes: { time: string, warning: string }[] = [];
     let currentTime = new Date();
     const [startHour, startMinute] = startTime.split(":").map(Number);
@@ -47,18 +49,24 @@ const calculateScheduleTimes = (items: Activity[], startTime: string = "09:00"):
         if (currentTime < openingTime || endTime > closingTime) {
             warning = `Scheduled outside of opening hours`;
         }
+
+        if (weather === "raining" && item.tags.includes("outdoor")) {
+            warning += warning ? " and " : "";
+            warning += "Weather warning: raining";
+        }
+
         scheduleTimes.push({ time: scheduleTime, warning });
     });
 
     return scheduleTimes;
 };
 
-const DaySchedule = ({ items, onRemoveItem, startTime = "09:00" }: Props) => {
+const DaySchedule = ({ items, onRemoveItem, startTime = "09:00", weather }: Props) => {
     const [scheduleTimes, setScheduleTimes] = useState<{ time: string, warning: string }[]>([]);
     const [warningMessage, setWarningMessage] = useState<string>("");
 
     useEffect(() => {
-        const times = calculateScheduleTimes(items, startTime);
+        const times = calculateScheduleTimes(items, startTime, weather);
         setScheduleTimes(times);
 
         if (items.length > 0) {
@@ -80,7 +88,7 @@ const DaySchedule = ({ items, onRemoveItem, startTime = "09:00" }: Props) => {
         } else {
             setWarningMessage("");
         }
-    }, [items, startTime]);
+    }, [items, startTime, weather]);
 
     return (
         <Droppable droppableId="droppable">
@@ -89,7 +97,7 @@ const DaySchedule = ({ items, onRemoveItem, startTime = "09:00" }: Props) => {
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                     style={getListStyle(snapshot.isDraggingOver)}
-                    className={"w-10/12 p-8 min-h-96 flex flex-col border-dashed my-32 " + (items.length === 0 ? "border-2" : "border-l-4 border-gray-300")}
+                    className={"w-10/12 p-8 min-h-96 flex flex-col border-dashed mb-32 mt-8 " + (items.length === 0 ? "border-2" : "border-l-4 border-gray-300")}
                 >
                     {warningMessage && (
                         <div className="text-center text-gray-500 py-3">{warningMessage}</div>
