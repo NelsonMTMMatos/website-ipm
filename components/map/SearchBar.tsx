@@ -6,21 +6,30 @@ import { useEffect, useState } from 'react';
 
 const activities: Activity[] = activitiesData as Activity[];
 
+const tags = ["", "outdoor", "indoor", "museum", "historical", "restaurant", "garden"]
+
 type Props = {
   setCoordinates: (coords: [number, number]) => void;
   setZoom: (zoom: number) => void;
+  setActivities: React.Dispatch<React.SetStateAction<Activity[]>>;
 };
 
-const SearchBar = ({setCoordinates, setZoom}: Props) => {
+const SearchBar = ({setCoordinates, setZoom, setActivities}: Props) => {
   const [suggestions, setSuggestions] = useState<Activity[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState(false);
-  
 
   useEffect(() => {
+    if (inputValue.length > 0 && tags.includes(inputValue.toLowerCase())) {
+      const filtered = activities.filter((activity: Activity) =>
+        activity.tags.includes(inputValue.toLowerCase())
+      );
+      setActivities(filtered);
+    }else setActivities(activities);
+    
     if (inputValue.length > 0 && !selected) {
       const filtered = activities.filter((activity: Activity) =>
-        activity.name.toLowerCase().includes(inputValue.toLowerCase())
+        activity.name.toLowerCase().includes(inputValue.toLowerCase()) 
       );
       setSuggestions(filtered);
     } else {

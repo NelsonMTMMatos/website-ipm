@@ -53,7 +53,13 @@ const Page = () => {
 
         <div className=" w-full p-10 flex flex-col items-center justify-center gap-5">
             {activeTrips().map((trip:Trip, index:number) => 
-                <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={activityInTrip(trip, activityId)}/>)}
+                <TripCard 
+                  key={index} 
+                  trip={trip} 
+                  onClick={handleTripClick} 
+                  hasActivity={activityInTrip(trip, activityId)}
+                  enableButton={false}
+                />)}
         </div>
         <div className="flex items-center gap-2 text-3xl">
             <Link href='/plans/new' className="flex items-center gap-2 text-3xl">

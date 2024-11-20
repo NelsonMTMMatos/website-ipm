@@ -34,7 +34,7 @@ export default function RootLayout({
       >
         <Container>
           <Navbar />
-          <div className="flex-1 flex flex-col overflow-y-auto pb-4 md:pb-0">
+          <div className="flex-1 flex flex-col overflow-y-auto">
             {children}
           </div>
           <Footer />

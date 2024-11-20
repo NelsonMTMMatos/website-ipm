@@ -24,6 +24,9 @@ const ActivityPage = () => {
 
     if (!activity) return <div>Activity not found</div>;
 
+    const prevPath = sessionStorage.getItem('previousUrl')?.startsWith('/plans/') || null;
+    console.log(prevPath)
+
     return (
     <div className = 'flex flex-col items-center justify-center gap-y-2 px-4'>
         <div className="w-full flex items-center py-5 gap-x-4">
@@ -59,9 +62,11 @@ const ActivityPage = () => {
                 {activity.similar.map((id:number, index:number) => <ActivityCard activity={activities[id]} key={index}/>)}    
             </div>   
         </div>
-        <div className=' mt-5 flex flex-col items-center justify-end'>
-            <Link href={'/activities/' + id + '/plan'} className=' bg-deep-blue text-white px-4 py-2 rounded'>Add to Plan</Link>
-        </div>
+        {!prevPath && 
+            <div className=' mt-5 flex flex-col items-center justify-end'>
+               <Link href={'/activities/' + id + '/plan'} className=' bg-deep-blue text-white px-4 py-2 rounded'>Add to Plan</Link>
+           </div>
+        }
     </div>)
 }
 

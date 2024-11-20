@@ -1,6 +1,5 @@
 'use client';
 
-import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from 'next/navigation';
 import { Trip } from "@/types";
@@ -41,12 +40,10 @@ const Plans = () => {
 
         <div className=" w-full px-6 flex flex-col items-center justify-center gap-5">
             {activeTrips().map((trip:Trip, index:number) => 
-              <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={false}/>)}
+              <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={false} enableButton={true}/>)}
         </div>
-        <div className=" my-5 flex items-center gap-2 text-3xl">
-            <Link href='/plans/new' className="flex items-center gap-2 text-3xl">
-                <IoAddCircleOutline size={40}/> 
-            </Link>
+        <div className=" my-5 flex items-center gap-2 text-3xl" onClick={() => {router.push('/plans/new')}}>
+            <IoAddCircleOutline size={40}/> 
             <span>Create New</span>
         </div>
         <div className="px-6 w-full mt-6 flex flex-col items-center justify-center">
@@ -58,7 +55,7 @@ const Plans = () => {
             </div>
             <div className=" w-full py-5 flex flex-col items-center justify-center gap-5">
                 {pastTrips().map((trip:Trip, index:number) => 
-                  <TripCard key={index} trip={trip} onClick={handleTripClick}  hasActivity={false}/>)}
+                  <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={false} enableButton={false} />)}
             </div>
         </div>
     </div>

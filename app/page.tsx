@@ -3,14 +3,14 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
-
-const Map = dynamic(() => import('@/components/map/Map'), { ssr: false });
 import SearchBar from '@/components/map/SearchBar';
 import Filter from '@/components/map/Filter';
 import initialActivities from '@/data/activities.json'
 import { MdFilterAlt, MdOutlineFilterAlt } from "react-icons/md";
 import defaultFilterOptions from '@/data/defaultFilterOptions.json'
 import trips from "@/data/trips.json"
+
+const Map = dynamic(() => import('@/components/map/Map'), { ssr: false });
 
 export default function Home() {
   const [coordinates, setCoordinates] = useState<[number, number]>([38.6916, -9.2160]); // initial map coordinates
@@ -46,7 +46,7 @@ export default function Home() {
         <main className="flex flex-col h-screen relative">
           <div className="flex-grow w-full max-w-3xl mx-auto relative">
             <div className="relative flex items-center justify-center">
-              <SearchBar setCoordinates={setCoordinates} setZoom={setZoom} />
+              <SearchBar setCoordinates={setCoordinates} setZoom={setZoom} setActivities={setActivities}/>
               <div className="absolute top-4 right-6 z-50">
                 {filterIcon ? <MdFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />
                     : <MdOutlineFilterAlt onClick={handleFilterOpen} size={40} className="cursor-pointer" />}

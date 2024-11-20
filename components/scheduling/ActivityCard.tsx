@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
 import { CSSProperties } from "react";
 import { Activity } from "@/types";
+import { RxCross2 } from "react-icons/rx";
+import Link from "next/link";
 
 const getItemStyle = (isDragging: boolean, draggableStyle: CSSProperties = {}): CSSProperties => ({
     ...draggableStyle,
@@ -25,45 +27,79 @@ const calculateEndTime = (startTime: string, timeNeeded: number): string => {
     return endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 };
 
-const ActivityCard = ({ item, index, verticalLayout = false, warningMessage = "", onRemove, scheduleTime }: ActivityProps) => {
+const ActivityCard = ({
+    item,
+    index,
+    verticalLayout = false,
+    warningMessage = "",
+    onRemove,
+    scheduleTime,
+  }: ActivityProps) => {
     const endTime = scheduleTime ? calculateEndTime(scheduleTime, item.time_needed) : "";
-
+  
+    useEffect(() => {
+      if (!sessionStorage.getItem("previousUrl"))
+        sessionStorage.setItem("previousUrl", location.pathname);
+    }, []);
+  
     return (
-        <Draggable key={item.id.toString()} draggableId={item.id.toString()} index={index}>
-            {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
-                <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                    className={`p-2 border rounded flex-shrink-0 bg-white relative ${verticalLayout ? "flex flex-col items-center w-36 mx-1" : "flex items-center w-full my-1"}`}
-                >
-                    {!verticalLayout ? (
-                        <button
-                            onClick={() => onRemove && onRemove(item.id)}
-                            className="absolute top-1 right-1 text-red-500"
-                        >
-                            X
-                        </button>
-                    ) : ("")}
-                    <img src={"/Activities/" + item.image} alt={item.name} className="w-16 h-12 flex-shrink-0"/>
-                    <div className={`flex-grow ${verticalLayout ? "text-center mt-2" : "ml-4"}`}>
-                        {scheduleTime && (
-                            <div className="font-bold mb-1">
-                                {scheduleTime} - {endTime}
-                            </div>
-                        )}
-                        <div className="font-bold">
-                            {item.name}
-                        </div>
-                        <div className={verticalLayout ? "hidden" : ""}>{`Time needed: ${item.time_needed}h`}</div>
-                        <div className={verticalLayout ? "text-xs" : ""}>{`open ${item.opening_hours} - ${item.closing_hours}`}</div>
-                        {warningMessage != "" && !verticalLayout && <div className="text-red-500 ">{warningMessage}</div>}
-                    </div>
-                </div>
+      <Draggable key={item.id.toString()} draggableId={item.id.toString()} index={index}>
+        {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+            className={`p-2 border rounded flex-shrink-0 bg-white relative ${
+              verticalLayout
+                ? "flex flex-col items-center w-36 mx-1"
+                : "flex items-center w-full my-1"
+            }`}
+          >
+            {!verticalLayout && (
+              <button
+                onClick={() => {
+                  onRemove && onRemove(item.id);
+                }}
+                className="absolute top-1 right-1 text-red-500"
+              >
+                <RxCross2 size={20} />
+              </button>
             )}
-        </Draggable>
+            <Link href={"/activities/" + item.id}>
+              <div className={`${
+              verticalLayout
+                ? "flex flex-col items-center w-36 mx-1"
+                : "flex items-center w-full my-1"
+            }`}>
+                <img
+                  src={"/Activities/" + item.image}
+                  alt={item.name}
+                  className="w-16 h-12 flex-shrink-0"
+                />
+                <div className={`flex-grow ${verticalLayout ? "text-center mt-2" : "ml-4"}`}>
+                  {scheduleTime && (
+                    <div className="font-bold mb-1">
+                      {scheduleTime} - {endTime}
+                    </div>
+                  )}
+                  <div className="font-bold">{item.name}</div>
+                  <div className={verticalLayout ? "hidden" : ""}>
+                    {`Time needed: ${item.time_needed}h`}
+                  </div>
+                  <div className={verticalLayout ? "text-xs" : ""}>
+                    {`open ${item.opening_hours} - ${item.closing_hours}`}
+                  </div>
+                  {warningMessage != "" && !verticalLayout && (
+                    <div className="text-red-500">{warningMessage}</div>
+                  )}
+                </div>
+              </div>
+            </Link>
+          </div>
+        )}
+      </Draggable>
     );
-}
-
-export default ActivityCard;
+  };
+  
+  export default ActivityCard;

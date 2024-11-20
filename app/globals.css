@@ -32,3 +32,15 @@
 .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging{
     box-shadow: 0 0 0 5px #3D52A0 !important;
 }
+
+.leaflet-tooltip {
+    color: #000000 !important;
+    font-weight: bold;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-width: 0 !important;
+}
+
+.leaflet-tooltip::before {
+    border-bottom-color: transparent !important;
+}
