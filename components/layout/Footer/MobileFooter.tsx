@@ -19,7 +19,7 @@ const MobileFooter = () => {
   }, [pathname]);
 
   return (
-    <footer className="fixed h-16 bottom-0 w-full bg-deep-blue text-white px-3 flex items-center justify-around">
+    <footer className="sticky h-16 bottom-0 w-full bg-deep-blue text-white px-3 flex items-center justify-around">
       <Link href="/">
         <div className="flex flex-col justify-center items-center">
           {isDiscover ? <FaCompass size={24} /> : <FaRegCompass size={24} />}
