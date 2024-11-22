@@ -27,8 +27,8 @@ const TripCard = ({trip, onClick, hasActivity, enableButton} : Props) => {
     </div>
     {enableButton &&
       <div className=" w-full flex items-center justify-around">
-        <button className=" border-2 border-black rounded-2xl px-2 py-1" onClick={() => {onClick(trip)}}>Details</button>
-        <Link href={'/'} className="border-2 border-black rounded-2xl px-2 py-1">Add Activity</Link>
+        <button className=" border-2 border-black rounded-2xl px-2 py-1" onClick={() => {onClick(trip)}}>Schedule added activities</button>
+        <Link href={'/'} className="border-2 border-black rounded-2xl px-2 py-1">Add Activities</Link>
       </div> 
     }
   </div>

@@ -73,15 +73,17 @@ const Map = ({coordinates, zoom, setZoom, activities}: MapProps) => {
               <div>
                 <div className='flex flex-col items-center justify-center gap-y-2'>
                   <div className='relative w-[150px] h-[100px]'>
+                      <Link href={'/activities/' + activity.id}>
                       <Image
                         src={"/Activities/" + activity.image}
                         alt={activity.name}
                         layout="fill"
                         objectFit="cover"
                       />
+                      </Link>
                   </div>
                   <div className=' w-full flex flex-col items-start gap-y-1'>
-                    <span className='text-xl'>{activity.name} </span>
+                    <span className='text-xl'><Link href={'/activities/' + activity.id}>{activity.name}</Link></span>
                     <span><b>Schedule:</b> {activity.opening_hours}-{activity.closing_hours}</span>
                   </div>
                   <div className=' w-full flex items-center justify-end'>

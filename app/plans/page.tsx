@@ -42,7 +42,7 @@ const Plans = () => {
             {activeTrips().map((trip:Trip, index:number) => 
               <TripCard key={index} trip={trip} onClick={handleTripClick} hasActivity={false} enableButton={true}/>)}
         </div>
-        <div className=" my-5 flex items-center gap-2 text-3xl" onClick={() => {router.push('/plans/new')}}>
+        <div className=" my-5 flex items-center gap-2 text-3xl cursor-pointer" onClick={() => {router.push('/plans/new')}}>
             <IoAddCircleOutline size={40}/> 
             <span>Create New</span>
         </div>
