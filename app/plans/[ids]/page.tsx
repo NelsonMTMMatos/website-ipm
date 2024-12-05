@@ -10,6 +10,7 @@ import {Activity, Trip} from "@/types";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { WiDaySunny, WiRain } from "react-icons/wi";
 import Link from "next/link";
+import { format } from "date-fns";
 
 const calculateDays = (startDate: string, endDate: string): number => {
     const start = new Date(startDate);
@@ -154,11 +155,21 @@ const PlanSchedule = () => {
 
     if (!trip) return <div>Loading...</div>;
 
+    const getCurrentTripDate = () => {
+        const startDate = new Date(trip.start_date);
+        startDate.setDate(startDate.getDate() + (currentDay - 1));
+        return startDate;
+    };
+
+    const formattedDate = getCurrentTripDate()
+        ? format(getCurrentTripDate(), "EEEE, dd.MM.yyyy")
+        : "";
+
     return (
         <div className="min-h-[calc(100vh-128px)] w-full flex flex-col items-center">
             <div className="w-full flex items-center py-5">
                 <Link href="/plans">
-                    <IoIosArrowBack size={64}/>
+                    <IoIosArrowBack size={64} />
                 </Link>
                 <span className="text-4xl">Trip to {trip.destination}</span>
             </div>
@@ -173,11 +184,12 @@ const PlanSchedule = () => {
                     <IoIosArrowForward size={32} />
                 </button>
             </div>
-            <div className="w-full flex justify-center items-center">
+            <div className="w-full flex flex-col items-center">
+                <span className="text-xl">{formattedDate}</span> {/* Add this */}
                 {getWeatherIcon(currentDay === 2 ? "raining" : "sunny")}
             </div>
             <DragDropContext onDragEnd={onDragEnd}>
-                <DaySchedule items={scheduleItems} onRemoveItem={handleRemoveItem} startTime={"09:00"} weather={currentDay === 2 ? "raining" : "sunny"}/>
+                <DaySchedule items={scheduleItems} onRemoveItem={handleRemoveItem} startTime={"09:00"} weather={currentDay === 2 ? "raining" : "sunny"} />
                 <ActivityDrawer items={drawerItems} />
             </DragDropContext>
         </div>
