@@ -14,7 +14,7 @@ type Props = {
 
 const TripCard = ({trip, onClick, hasActivity, enableButton} : Props) => {
   return (
-  <div className={`${hasActivity ? 'text-gray-500' : 'text-black'} bg-mist-blue w-full flex flex-col 
+  <div className={`${hasActivity ? 'text-gray-500' : 'text-black'} bg-[rgb(236,236,240)] w-full flex flex-col 
                     justify-start items-center px-4 py-3 border-2 border-black rounded-3xl gap-2`}
                     onClick={() => {if(!isPastTrip(trip) && !enableButton) onClick(trip)}}>
     <div className=" w-full px-4 flex justify-start items-start">
@@ -26,9 +26,9 @@ const TripCard = ({trip, onClick, hasActivity, enableButton} : Props) => {
         </span>
     </div>
     {enableButton &&
-      <div className=" w-full flex items-center justify-around">
-        <button className=" border-2 border-black rounded-2xl px-2 py-1" onClick={() => {onClick(trip)}}>Schedule added activities</button>
-        <Link href={'/'} className="border-2 border-black rounded-2xl px-2 py-1">Add Activities</Link>
+      <div className=" w-full flex items-center justify-around text-white">
+        <button className=" bg-deep-blue rounded-2xl px-3 py-1" onClick={() => {onClick(trip)}}>Trip Schedule</button>
+        <Link href={'/'} className="bg-deep-blue rounded-2xl px-3 py-1">Add Activities</Link>
       </div> 
     }
   </div>

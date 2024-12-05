@@ -26,7 +26,6 @@ const Filter = ({ setActivities, setFilterIcon, setFilterOpen}: Props) => {
 
   useEffect(() => {
     const filters = JSON.parse(sessionStorage.getItem('filters') || 'null');
-    console.log(filters)
     if(filters){
       setType(filters.type)
       setHour(filters.hour)
@@ -104,7 +103,7 @@ const Filter = ({ setActivities, setFilterIcon, setFilterOpen}: Props) => {
             </div>
         </div>
         <div className='w-full flex items-center justify-end gap-x-3'>
-          <button className=' bg-[#A7A7A7] text-white px-3 py-1 rounded-sm' onClick={handleReset}> Reset</button>
+          <button className=' bg-deep-blue text-white px-3 py-1 rounded-sm' onClick={handleReset}> Reset</button>
           <button className=" bg-deep-blue text-white px-3 py-1 rounded-sm" onClick={handleApply}>
             Apply
           </button>

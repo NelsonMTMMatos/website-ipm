@@ -38,8 +38,7 @@ const ActivityCard = ({
     const endTime = scheduleTime ? calculateEndTime(scheduleTime, item.time_needed) : "";
   
     useEffect(() => {
-      if (!sessionStorage.getItem("previousUrl"))
-        sessionStorage.setItem("previousUrl", location.pathname);
+      sessionStorage.setItem("previousUrl", location.pathname);
     }, []);
   
     return (

@@ -26,8 +26,16 @@ export default function Home() {
   useEffect(() => {
     if (!sessionStorage.getItem('filters'))
       sessionStorage.setItem('filters', JSON.stringify(defaultFilterOptions));
+    else{
+      const filters = JSON.parse(sessionStorage.getItem('filters') || 'null');
+      const isPriceRangeDefault = JSON.stringify(filters.priceRange) === JSON.stringify(defaultFilterOptions.priceRange);
+      if(filters.type === "" && filters.hour === "" && isPriceRangeDefault) setFilterIcon(false) 
+      else setFilterIcon(true) 
+    }
     if(!sessionStorage.getItem('trips'))
       sessionStorage.setItem('trips', JSON.stringify(trips));
+    
+    sessionStorage.setItem("previousUrl", location.pathname);
   }, [])
 
   useEffect(() => {

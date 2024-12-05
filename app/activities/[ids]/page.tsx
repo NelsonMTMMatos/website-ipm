@@ -25,7 +25,6 @@ const ActivityPage = () => {
     if (!activity) return <div>Activity not found</div>;
 
     const prevPath = sessionStorage.getItem('previousUrl')?.startsWith('/plans/') || null;
-    console.log(prevPath)
 
     return (
     <div className = 'flex flex-col items-center justify-center gap-y-2 px-4'>
