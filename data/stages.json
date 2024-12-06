@@ -16,18 +16,18 @@
     },
     { 
         "description": "Stage 4: Computational prototype",
-        "availability": false,
-        "stage_assigment": "" 
+        "availability": true,
+        "stage_assigment": "G_21_stage4.pdf"
     },
     { 
-        "description": "Stage 5: Evaluation",
-        "availability": false,
-        "stage_assigment": "" 
+        "description": "Stage 5: Evaluation (sent and received)",
+        "availability": true,
+        "stage_assigment": "G_21_stage5.pdf"
     },
     { 
         "description": "Stage 6: Evaluation results and presentation/discussion",
-        "availability": false,
-        "stage_assigment": "" 
+        "availability": true,
+        "stage_assigment": "G_21_stage6.pdf"
     }
 ]
     
